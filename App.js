@@ -1,11 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
+import Toolbar from "./components/toolbar/Toolbar";
+import Books from "./components/books/Books";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      {/* <Toolbar /> */}
+      <Books />
       <StatusBar style="auto" />
     </View>
   );
@@ -13,9 +16,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "brown",
+    height: Dimensions.get("window").height,
   },
 });
