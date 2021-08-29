@@ -17,7 +17,12 @@ export default function Books({ navigation }) {
   const [textVal, setText] = useState("");
   const [allData, setAllData] = useState({});
   const [isLoading,setIsLoading] = useState(true);
+  const [author,setAuthor] = useState("");
   //const [dataList,setDataList] = useState([])
+
+  const  searchDetails  = navigation.state.params.SearchInfo;
+
+  let jsonData;
 
   const onTextChange = (searchText) => {
     /* if (searchText === "") {
@@ -31,9 +36,8 @@ export default function Books({ navigation }) {
   };
 
   const FetchBooks = async () => {
-    let jsonData;
     const booksData = await fetch(
-      `http://openlibrary.org/search.json?q=` + "the lord of the rings"
+      `http://openlibrary.org/search.json?q=` + searchDetails
     )
       .then((response) => response.json())
       .then((json) => {
@@ -51,7 +55,6 @@ export default function Books({ navigation }) {
   const pressRow = (book) => {
     navigation.navigate("BookDetails", { 'BookInfo': book });
     console.log("SELECTED BOOK:", book);
-     //<BookDetails BookInfo={book}/>;
   };
 
   const renderItem = ({ item }) => {
@@ -65,11 +68,8 @@ export default function Books({ navigation }) {
           <View style={styles.bookInfo}>
             <Text style={styles.bookTitle}>{item.title}</Text>
             <Text style={styles.author}>
-              Author: {item.author_name === ""}
+              Author:  
               {item.author_name}
-            </Text>
-            <Text style={styles.publishYear}>
-              Published Year:{item.first_publish_year}
             </Text>
           </View>
         </View>
@@ -77,28 +77,25 @@ export default function Books({ navigation }) {
     );
   };
   return (
-    isLoading ? 
+
+    Object.keys(allData).length == 0 ? 
     <View>
+      <Text> No DATA FOUND. GO BACK AND SEARCH AGAIN</Text>
+    </View> 
+              :  
+    isLoading ? 
+    <View style={styles.indicator}>
       <ActivityIndicator size="large" color="blue" animating />
     </View> 
               :
-              <ScrollView>
+    <ScrollView>
     <View style={styles.container}>
-      <View>
-        <Toolbar />
-      </View>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Search Books..."
-        //value={text}
-        onChangeText={(text) => onTextChange(text)}
-      />
       <Text>
-        {Object.keys(allData).map((item) => {
+        {/* {Object.keys(allData).map((item) => {
           {
             console.log("Item value:", { item });
           }
-        })}
+        })} */}
         {console.log("All Data ", allData)}
         {/* {allData && (
           <FlatList
@@ -135,19 +132,29 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 
+  indicator:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+  },
+
   row: {
-    flexDirection: "row",
+    flex:1,
+    flexDirection:'row',
     justifyContent: "center",
     padding: 12,
-    backgroundColor: "gray",
+    backgroundColor: "#d3d3d3",
     marginTop: 10,
     marginBottom: 3,
-    width:'100%',
-    alignSelf: "center",
+    marginLeft:10,
+    width:Dimensions.get("window").height,
+    alignItems: "center",
   },
   bookInfo: {
     flex: 1,
-    marginLeft: 2,
+    justifyContent:'center',
+    alignItems:'center',
+    
   },
   bookTitle: {
     color: "black",

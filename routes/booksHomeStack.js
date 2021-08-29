@@ -2,8 +2,12 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import Books from "../components/books/Books";
 import BookDetails from "../components/bookDetails/BookDetails";
+import SearchHome from "../components/searchHome/SearchHome";
 
 const screens = {
+  SearchHome:{
+    screen:SearchHome,
+  },
   Books: {
     screen: Books,
   },
