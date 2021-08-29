@@ -4,8 +4,9 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Toolbar() {
   return (
     <View style={styles.toolbarView}>
-      <Text style={styles.toolbarText}>Book Finder</Text>
+      <Text style={styles.toolbarText}>
       Book Finder!
+      </Text>
     </View>
   );
 }
