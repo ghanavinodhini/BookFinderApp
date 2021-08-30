@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Toolbar from "../../components/toolbar/Toolbar";
 import {
   StyleSheet,
@@ -12,28 +12,20 @@ import {
   ScrollView,
 } from "react-native";
 import BookDetails from "../bookDetails/BookDetails";
+import { CheckoutCountContext } from "../helper/CountProvider";
 
 export default function Books({ navigation }) {
-  const [textVal, setText] = useState("");
+  
   const [allData, setAllData] = useState({});
   const [isLoading,setIsLoading] = useState(true);
-  const [author,setAuthor] = useState("");
-  //const [dataList,setDataList] = useState([])
+  
+  //const {count,setCount} = useContext(CheckoutCountContext);
 
   const  searchDetails  = navigation.state.params.SearchInfo;
 
   let jsonData;
 
-  const onTextChange = (searchText) => {
-    /* if (searchText === "") {
-      console.log("No value entered");
-    }*/
-    let value = searchText.toLowerCase();
-
-    console.log("Entered in searchbox:" + value);
-    setText(value);
-    console.log("Entered text:", textVal);
-  };
+  
 
   const FetchBooks = async () => {
     const booksData = await fetch(
@@ -52,10 +44,11 @@ export default function Books({ navigation }) {
     FetchBooks();
   }, []);
 
-  const pressRow = (book) => {
+   const pressRow = (book) => {
     navigation.navigate("BookDetails", { 'BookInfo': book });
     console.log("SELECTED BOOK:", book);
-  };
+  }; 
+
 
   const renderItem = ({ item }) => {
     return (
@@ -80,6 +73,17 @@ export default function Books({ navigation }) {
 
     Object.keys(allData).length == 0 ? 
     <View>
+      <View>
+          <Toolbar />
+      </View>
+      <CheckoutCountContext.Consumer>
+    {
+        cbCount=>
+        <View>
+          <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
+        </View>
+    }
+    </CheckoutCountContext.Consumer>
       <Text> No DATA FOUND. GO BACK AND SEARCH AGAIN</Text>
     </View> 
               :  
@@ -90,7 +94,21 @@ export default function Books({ navigation }) {
               :
     <ScrollView>
     <View style={styles.container}>
+      <View>
+        <Toolbar />
+      </View>
+      <CheckoutCountContext.Consumer>
+    {
+        cbCount=>
+        <View>
+          <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
+        </View>
+    }
+    </CheckoutCountContext.Consumer>
+      {/* {console.log("Inside Books count value:",count)}
+      {count == 0 ? <Text>You have no checkout books</Text> : <Text>No. of checkout books</Text>} */}
       <Text>
+        
         {/* {Object.keys(allData).map((item) => {
           {
             console.log("Item value:", { item });

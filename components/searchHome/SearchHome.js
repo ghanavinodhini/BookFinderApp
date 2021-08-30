@@ -8,6 +8,7 @@ import {
     TextInput,
     Button,
   } from "react-native";
+  import {CheckoutCountContext} from "../helper/CountProvider";
 
 function SearchHome(props) {
     const [textVal, setText] = useState("");
@@ -32,6 +33,14 @@ function SearchHome(props) {
         <View>
             <Toolbar />
         </View>
+        <CheckoutCountContext.Consumer>
+    {
+        cbCount=>
+        <View>
+          <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
+        </View>
+    }
+    </CheckoutCountContext.Consumer>
         <TextInput
             style={styles.textInput}
             placeholder="Search Books..."

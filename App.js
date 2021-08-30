@@ -1,16 +1,18 @@
-import { StatusBar } from "expo-status-bar";
+
 import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
-import Books from "./components/books/Books";
+
 import Navigator from "./routes/booksHomeStack";
+import { CountProvider } from "./components/helper/CountProvider";
 
 export default function App() {
   return (
      <View style={styles.container}>
-          
+       <CountProvider>
        <Navigator /> 
-      <StatusBar style="auto" />
-    </View> 
+       </CountProvider>
+       
+    </View>  
   );
 }
 

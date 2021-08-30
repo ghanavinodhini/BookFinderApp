@@ -3,6 +3,7 @@ import { createAppContainer } from "react-navigation";
 import Books from "../components/books/Books";
 import BookDetails from "../components/bookDetails/BookDetails";
 import SearchHome from "../components/searchHome/SearchHome";
+import CheckoutBooks from "../components/checkoutBooks/CheckoutBooks";
 
 const screens = {
   SearchHome:{
@@ -13,6 +14,9 @@ const screens = {
   },
   BookDetails: {
     screen: BookDetails,
+  },
+  CheckoutBooks:{
+    screen: CheckoutBooks,
   },
 };
 const booksHomeStack = createStackNavigator(screens);
