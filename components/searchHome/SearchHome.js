@@ -7,8 +7,10 @@ import {
     View,
     TextInput,
     Button,
+    Image,
   } from "react-native";
   import {CheckoutCountContext} from "../helper/CountProvider";
+  import logo from "../../images/books.svg";
 
 function SearchHome(props) {
     const [textVal, setText] = useState("");
@@ -36,11 +38,13 @@ function SearchHome(props) {
         <CheckoutCountContext.Consumer>
     {
         cbCount=>
-        <View>
-          <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
+        <View style={styles.countContainer}>
+          <Text style={styles.countText}>No. of checkedout Books:{cbCount.checkCount}</Text>
         </View>
     }
     </CheckoutCountContext.Consumer>
+      <View style={styles.inputContainer}>
+        <Image source={logo} style={{width:150,height:150}} />
         <TextInput
             style={styles.textInput}
             placeholder="Search Books..."
@@ -51,6 +55,7 @@ function SearchHome(props) {
             getBooks();
             }} />
         </View>
+      </View>
     </View>
     )
 }
@@ -60,6 +65,11 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       height: Dimensions.get("window").height,
     },
+    inputContainer:{
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center',
+    },
     fitToText:{
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -68,12 +78,21 @@ const styles = StyleSheet.create({
       textInput: {
         height: 40,
         width: 200,
-        marginTop: 10,
+        marginTop: 30,
         marginBottom:5,
         borderColor: "blue",
         borderWidth: 1,
         alignSelf: "center",
       },
+      countContainer:{
+        backgroundColor:'#faebd7',
+        position:'absolute',
+        top:50,
+        right:10,
+      },
+      countText:{
+        fontSize:16,
+      }
 })
 
 export default SearchHome

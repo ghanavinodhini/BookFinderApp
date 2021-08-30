@@ -10,7 +10,7 @@ import {
   } from "react-native";
 const CheckoutCountContext = React.createContext();
 
-const CountProvider=(props)=>{
+const CountProvider = (props) => {
 
     const[checkCount,setCheckCount] = useState(0);
 
@@ -22,12 +22,11 @@ const CountProvider=(props)=>{
     return(
         <View style={styles.container}>
             <CheckoutCountContext.Provider value={{checkCount,updateCount}}>
- {props.children} 
-                </CheckoutCountContext.Provider>
+                {props.children} 
+            </CheckoutCountContext.Provider>
 
         </View>
-    )
-    
+    ) 
 }
 
 const styles = StyleSheet.create({

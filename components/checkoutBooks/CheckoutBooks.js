@@ -19,14 +19,10 @@ function CheckoutBooks() {
     {
         cbCount=>
         <View style={styles.container}>
-            
-                
             <View>
                 <Toolbar />
             </View>
             <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
-                
-            
         </View>
     }
         </CheckoutCountContext.Consumer>

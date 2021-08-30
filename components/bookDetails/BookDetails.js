@@ -87,8 +87,8 @@ import { CountProvider } from "../../components/helper/CountProvider";
     {
         cbCount=>
         <>
-        <View>
-          <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
+        <View style={styles.countContainer}>
+          <Text style={styles.countText}>No. of checkedout Books:{cbCount.checkCount}</Text>
         </View>
         <View style={styles.fitToText}>
         <Button style={styles.checkoutBtn} title="ADD TO CHECKOUT" onPress={() => {
@@ -127,6 +127,16 @@ const styles = StyleSheet.create({
   listStyle:{
     width:100,
     padding:2,
+  },
+  countContainer:{
+    justifyContent:'center',
+    alignSelf:'center',
+    backgroundColor:"#faebd7",
+    marginVertical:5,
+    marginBottom:5,
+  },
+  countText:{
+    fontSize:16,
   }
   
 })
