@@ -11,21 +11,15 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import BookDetails from "../bookDetails/BookDetails";
 import { CheckoutCountContext } from "../helper/CountProvider";
 
 export default function Books({ navigation }) {
   
   const [allData, setAllData] = useState({});
   const [isLoading,setIsLoading] = useState(true);
-  
-  //const {count,setCount} = useContext(CheckoutCountContext);
 
   const  searchDetails  = navigation.state.params.SearchInfo;
-
   let jsonData;
-
-  
 
   const FetchBooks = async () => {
     const booksData = await fetch(
@@ -70,7 +64,6 @@ export default function Books({ navigation }) {
     );
   };
   return (
-
     Object.keys(allData).length == 0 ? 
     <View>
       <View>
@@ -79,8 +72,8 @@ export default function Books({ navigation }) {
       <CheckoutCountContext.Consumer>
     {
         cbCount=>
-        <View>
-          <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
+        <View style={styles.countContainer}>
+          <Text style={styles.countText}>No. of checkedout Books:{cbCount.checkCount}</Text>
         </View>
     }
     </CheckoutCountContext.Consumer>
@@ -105,23 +98,7 @@ export default function Books({ navigation }) {
         </View>
     }
     </CheckoutCountContext.Consumer>
-      {/* {console.log("Inside Books count value:",count)}
-      {count == 0 ? <Text>You have no checkout books</Text> : <Text>No. of checkout books</Text>} */}
       <Text>
-        
-        {/* {Object.keys(allData).map((item) => {
-          {
-            console.log("Item value:", { item });
-          }
-        })} */}
-        {console.log("All Data ", allData)}
-        {/* {allData && (
-          <FlatList
-            data={allData}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.docs[0].author_name.toString()}
-          />
-        )} */}
         {allData && (
           <FlatList
             data={allData}
@@ -182,14 +159,18 @@ const styles = StyleSheet.create({
   },
 
   author: {
-    color: "red",
-    fontSize: 12,
+    color: "blue",
+    fontSize: 14,
     alignSelf: "center",
   },
 
-  publishYear: {
-    color: "blue",
-    fontSize: 10,
-    alignSelf: "center",
+  countContainer:{
+    backgroundColor:'#faebd7',
+    position:'absolute',
+    top:50,
+    right:10,
   },
+  countText:{
+    fontSize:16,
+  }
 });

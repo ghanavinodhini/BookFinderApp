@@ -6,26 +6,40 @@ import {
     Text,
     Dimensions,
     View,
-    TextInput,
     Button,
   } from "react-native";
 
-function CheckoutBooks() {
+  
+function CheckoutBooks(props) {
 
-    //const [checkoutCount,setCheckoutCount] = useState(props.navigation.state.params.BookInfo)
-    
     return (
-<CheckoutCountContext.Consumer>
+    <CheckoutCountContext.Consumer>
     {
         cbCount=>
         <View style={styles.container}>
             <View>
                 <Toolbar />
             </View>
-            <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
+            <View style={styles.countContainer}>
+                <Text style={styles.countText}>Number of checkedout Books:{cbCount.checkCount}</Text>
+                {
+                cbCount.checkCount == 5 ? 
+                <Text>
+                    Maximum limit is 5 books. You reached maximum limit. Please Return few books to checkout
+                </Text> :
+                <Text>
+                    Thanks for checking out Book. 
+                    <View style={styles.fitToText}>
+                        <Button title="GOTO BOOKS LIST" onPress={() => {
+                        props.navigation.navigate("Books");
+                        }} />
+                    </View>
+                </Text>
+                }
+            </View>
         </View>
     }
-        </CheckoutCountContext.Consumer>
+    </CheckoutCountContext.Consumer>
     )
 }
 
@@ -34,6 +48,21 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       height: Dimensions.get("window").height,
     },
+    countContainer:{
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:"#faebd7",
+    },
+    countText:{
+        fontSize:18,
+    },
+    fitToText:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignSelf:"center",
+      },
+
 })
 
 export default CheckoutBooks
