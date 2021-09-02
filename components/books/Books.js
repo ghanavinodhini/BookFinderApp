@@ -64,22 +64,7 @@ export default function Books({ navigation }) {
     );
   };
   return (
-    Object.keys(allData).length == 0 ? 
-    <View>
-      <View>
-          <Toolbar />
-      </View>
-      <CheckoutCountContext.Consumer>
-    {
-        cbCount=>
-        <View style={styles.countContainer}>
-          <Text style={styles.countText}>No. of checkedout Books:{cbCount.checkCount}</Text>
-        </View>
-    }
-    </CheckoutCountContext.Consumer>
-      <Text> No DATA FOUND. GO BACK AND SEARCH AGAIN</Text>
-    </View> 
-              :  
+    
     isLoading ? 
     <View style={styles.indicator}>
       <ActivityIndicator size="large" color="blue" animating />
