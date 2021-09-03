@@ -9,11 +9,6 @@ import {CheckoutCountContext} from "../helper/CountProvider";
   const languages = details.language;
   const publishYears = details.publish_year; 
   
-  console.log("Details:",details);
-  console.log("Details Language:",languages);
-  console.log("Details PublishYear:",publishYears);
-
-  
   const renderItem = ({ item }) => {
     return (
       <View>
@@ -32,7 +27,53 @@ import {CheckoutCountContext} from "../helper/CountProvider";
       <Text>,</Text>
   );
 
-  
+  const renderAuthor = () => {
+    if (typeof details.author_name === 'undefined'){
+    return(
+      <Text>Author: N/A</Text>
+    )
+    }else{
+      return(
+    <Text>Author: {details.author_name}</Text>
+    )}
+  }
+
+  const renderLanguages = () => {
+    if (typeof details.languages === 'undefined'){
+    return(
+      <Text>Languages: N/A</Text>
+    )
+    }else{
+      return(
+    <Text>Languages: {languages && (
+      <FlatList
+             data={languages}
+             renderItem={renderItem}
+             keyExtractor={(item, index) => index.toString()} />
+       )}
+       </Text>
+      )}
+  }
+
+  const displayPublishYears = () => {
+    if (typeof details.publish_year === 'undefined'){
+      return(
+        <Text>Publish Years: N/A</Text>
+      )
+      }else{
+        return(
+          <Text>Publish Year:{publishYears && (
+            <FlatList style={{marginHorizontal:10}}
+            horizontal
+            ItemSeparatorComponent={renderSeparator}
+            data = {publishYears}
+            renderItem={({ item }) => <RenderPublishYears years={item} />}
+            keyExtractor={(item,index)=>index.toString()}
+            />
+          )}</Text>
+        )}
+  }
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -42,23 +83,9 @@ import {CheckoutCountContext} from "../helper/CountProvider";
       </View>
       <Text style={styles.title}>{details.title}</Text>
       <Text>Suggest Title:{details.title_suggest}</Text>
-      <Text>Author: {details.author_name}</Text>
-      <Text>Publish Year:{publishYears && (
-        <FlatList style={{marginHorizontal:10}}
-        horizontal
-        ItemSeparatorComponent={renderSeparator}
-        data = {publishYears}
-        renderItem={({ item }) => <RenderPublishYears years={item} />}
-        keyExtractor={(item,index)=>index.toString()}
-        />
-      )}</Text>
-      <Text>Languages: {languages && (
-     <FlatList
-            data={languages}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => index.toString()} />
-      )}
-      </Text>
+      {renderAuthor()}
+      {displayPublishYears()}
+      {renderLanguages()}
       <Text>EBook Count:{details.ebook_count_i}</Text>
       <Text>Type: {details.type}</Text>
    

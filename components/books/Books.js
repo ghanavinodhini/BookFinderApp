@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Toolbar from "../../components/toolbar/Toolbar";
 import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   Dimensions,
   FlatList,
   TouchableHighlight,
   ActivityIndicator,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 import { CheckoutCountContext } from "../helper/CountProvider";
 
@@ -55,37 +55,40 @@ export default function Books({ navigation }) {
           <View style={styles.bookInfo}>
             <Text style={styles.bookTitle}>{item.title}</Text>
             <Text style={styles.author}>
-              Author:  
-              {item.author_name}
+              Author:  {item.author_name}
             </Text>
           </View>
         </View>
       </TouchableHighlight>
     );
   };
+  
   return (
-    
     isLoading ? 
     <View style={styles.indicator}>
       <ActivityIndicator size="large" color="blue" animating />
     </View> 
               :
-    <ScrollView>
-    <View style={styles.container}>
+    <SafeAreaView>
       <View>
         <Toolbar />
       </View>
+        
+    <View style={styles.countContainer}>
       <CheckoutCountContext.Consumer>
     {
         cbCount=>
         <View>
-          <Text>No. of checkedout Books:{cbCount.checkCount}</Text>
+          <Text style={styles.countText}>No. of checkedout Books:{cbCount.checkCount}</Text>
         </View>
     }
     </CheckoutCountContext.Consumer>
+    </View>
+    <ScrollView style={{marginVertical:30}}>
+      <View style={styles.container}>
       <Text>
         {allData && (
-          <FlatList
+          <FlatList 
             data={allData}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
@@ -94,6 +97,7 @@ export default function Books({ navigation }) {
       </Text>
     </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -101,6 +105,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     height: Dimensions.get("window").height,
+    justifyContent:"center",
+    alignItems:"center",
+    marginTop: 20,
   },
 
   textInput: {

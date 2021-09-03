@@ -16,18 +16,13 @@ function SearchHome(props) {
     const [textVal, setText] = useState("");
     let searchValue;
 
-    console.log("Inside searchhome props:",props);
     const onTextChange = (searchText) => {
         searchValue = searchText.toLowerCase();
-        console.log("Entered in searchbox:" + searchValue);
         setText(searchValue);
-        console.log("Entered text:", textVal);
       };
 
       const getBooks = () => {
-          console.log("Inside GetBooks");
         props.navigation.navigate("Books", { 'SearchInfo': textVal });
-        console.log("SEARCHED BOOK:", textVal);
       };
     
     return (
@@ -74,8 +69,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignSelf:"center",
-      },
-      textInput: {
+    },
+    textInput: {
         height: 60,
         width: 300,
         margin: 30,
@@ -85,16 +80,16 @@ const styles = StyleSheet.create({
         paddingHorizontal:15,
         alignSelf: "center",
         fontSize:16,
-      },
-      countContainer:{
+    },
+    countContainer:{
         backgroundColor:'#faebd7',
         position:'absolute',
         top:50,
         right:10,
-      },
-      countText:{
+    },
+    countText:{
         fontSize:16,
-      }
+    }
 })
 
 export default SearchHome
