@@ -9,7 +9,7 @@ import {
     Button,
     Image,
   } from "react-native";
-  import {CheckoutCountContext} from "../helper/CountProvider";
+  import {CheckoutCountContext} from "../helper/CountContext";
   import logo from "../../images/books.svg";
 
 function SearchHome(props) {

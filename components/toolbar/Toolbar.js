@@ -5,7 +5,7 @@ export default function Toolbar() {
   return (
     <View style={styles.toolbarView}>
       <Text style={styles.toolbarText}>
-      Book Finder!
+      Open Library Book Finder!
       </Text>
     </View>
   );

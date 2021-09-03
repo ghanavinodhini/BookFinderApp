@@ -7,13 +7,13 @@ import {
   
 
 const CheckoutCountContext = React.createContext();
-const CountProvider = (props) => {
 
-    const[checkCount,setCheckCount] = useState(0);
+const CountContext = (props) => {
+const[checkCount,setCheckCount] = useState(0);
 
-    const updateCount = () => {
-        setCheckCount(checkCount + 1);
-        console.log("UpdateCount function value count:",checkCount);
+const updateCount = () => {
+    setCheckCount(checkCount + 1);
+    console.log("UpdateCount function value count:",checkCount);
     }
 
     return(
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export {CountProvider,CheckoutCountContext};
+export {CountContext,CheckoutCountContext};

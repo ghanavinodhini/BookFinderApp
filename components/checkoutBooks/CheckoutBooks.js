@@ -1,6 +1,6 @@
 import React from 'react';
 import Toolbar from "../../components/toolbar/Toolbar";
-import {CheckoutCountContext} from "../helper/CountProvider";
+import {CheckoutCountContext} from "../helper/CountContext";
 import {
     StyleSheet,
     Text,

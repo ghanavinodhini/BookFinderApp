@@ -11,7 +11,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import { CheckoutCountContext } from "../helper/CountProvider";
+import { CheckoutCountContext } from "../helper/CountContext";
 
 export default function Books({ navigation }) {
   
@@ -54,14 +54,26 @@ export default function Books({ navigation }) {
         <View style={styles.row}>
           <View style={styles.bookInfo}>
             <Text style={styles.bookTitle}>{item.title}</Text>
-            <Text style={styles.author}>
+            {renderAuthor(item)}
+            {/* <Text style={styles.author}>
               Author:  {item.author_name}
-            </Text>
+            </Text> */}
           </View>
         </View>
       </TouchableHighlight>
     );
   };
+
+  const renderAuthor = (item) => {
+    if (typeof item.author_name === 'undefined'){
+    return(
+      <Text style={styles.author}>Author: N/A</Text>
+    )
+    }else{
+      return(
+    <Text style={styles.author}>Author: {item.author_name}</Text>
+    )}
+  }
   
   return (
     isLoading ? 

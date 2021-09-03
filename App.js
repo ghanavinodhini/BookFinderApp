@@ -1,17 +1,15 @@
 
 import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
-
+import { StyleSheet, View, Dimensions } from "react-native";
 import Navigator from "./routes/booksHomeStack";
-import { CountProvider } from "./components/helper/CountProvider";
+import { CountContext } from "./components/helper/CountContext";
 
 export default function App() {
   return (
      <View style={styles.container}>
-       <CountProvider>
-       <Navigator /> 
-       </CountProvider>
-       
+       <CountContext>
+          <Navigator /> 
+       </CountContext>
     </View>  
   );
 }
