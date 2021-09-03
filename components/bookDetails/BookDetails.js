@@ -12,7 +12,7 @@ import {CheckoutCountContext} from "../helper/CountContext";
   const renderItem = ({ item }) => {
     return (
       <View>
-      <Text>{item}</Text>
+        <Text>{item}</Text>
     </View>
     )
   }
@@ -39,7 +39,7 @@ import {CheckoutCountContext} from "../helper/CountContext";
   }
 
   const renderLanguages = () => {
-    if (typeof details.languages === 'undefined'){
+    if (typeof details.language === 'undefined'){
     return(
       <Text>Languages: N/A</Text>
     )
