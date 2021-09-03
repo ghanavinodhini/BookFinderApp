@@ -33,20 +33,20 @@ function SearchHome(props) {
         <CheckoutCountContext.Consumer>
     {
         cbCount=>
-        <View style={styles.countContainer}>
-          <Text style={styles.countText}>No. of checkedout Books:{cbCount.checkCount}</Text>
+        <View style = {styles.countContainer}>
+          <Text style = {styles.countText}>No. of checkedout Books:{cbCount.checkCount}</Text>
         </View>
     }
     </CheckoutCountContext.Consumer>
       <View style={styles.inputContainer}>
-        <Image source={logo} style={{width:150,height:150}} />
+        <Image source = {logo} style={{width:150,height:150}} />
         <TextInput
-            style={styles.textInput}
-            placeholder="Search Books..."
-            onChangeText={(text) => onTextChange(text)}
+            style = {styles.textInput}
+            placeholder = "Search Books By Title..."
+            onChangeText = {(text) => onTextChange(text)}
         />
-        <View style={styles.fitToText}>
-        <Button title="GOTO BOOKLIST" onPress={() => {
+        <View style = {styles.fitToText}>
+        <Button title = "GOTO BOOKLIST" onPress = {() => {
             getBooks();
             }} />
         </View>

@@ -20,25 +20,23 @@ function CheckoutBooks(props) {
             <View>
                 <Toolbar />
             </View>
-            <View style={styles.countContainer}>
+            
                 <Text> YOUR CHECKOUT LIMITS IS MAXIMUM 5 BOOKS</Text>
                 {
                 cbCount.checkCount > 5 ? 
                 <Text>
                      You reached maximum limit. Please Return few books to checkout.
-                </Text> :
-                
-                <Text>
-                    <Text style={styles.countText}>Number of checkedout Books:{cbCount.checkCount}</Text>
+                </Text> 
+                                        :
+                 <View style={styles.countContainer}>
+                    <Text style={styles.countText}>Number of checkedout Books: {cbCount.checkCount}</Text>
                     <View style={styles.fitToText}>
                         <Button title="GOTO BOOKS LIST" onPress={() => {
                         props.navigation.navigate("Books");
                         }} />
                     </View>
-                </Text>
-                
+                </View>
                 }
-            </View>
         </View>
     }
     </CheckoutCountContext.Consumer>
@@ -58,6 +56,7 @@ const styles = StyleSheet.create({
     },
     countText:{
         fontSize:18,
+        fontWeight:"bold",
     },
     fitToText:{
         flexDirection: 'row',

@@ -81,14 +81,15 @@ import {CheckoutCountContext} from "../helper/CountContext";
       <View>
         <Toolbar />
       </View>
-      <Text style={styles.title}>{details.title}</Text>
-      <Text>Suggest Title:{details.title_suggest}</Text>
-      {renderAuthor()}
-      {displayPublishYears()}
-      {renderLanguages()}
-      <Text>EBook Count:{details.ebook_count_i}</Text>
-      <Text>Type: {details.type}</Text>
-   
+        <Text style={styles.title}>{details.title}</Text>
+      <View style={styles.bookInfo}>
+        <Text>Suggest Title: {details.title_suggest}</Text>
+        {renderAuthor()}
+        {displayPublishYears()}
+        {renderLanguages()}
+        <Text>EBook Count: {details.ebook_count_i}</Text>
+        <Text>Type: {details.type}</Text>
+      </View>
       <CheckoutCountContext.Consumer>
     {
         cbCount=>
@@ -128,9 +129,9 @@ const styles = StyleSheet.create({
     fontSize:24,
     marginVertical: 8,
   },
-  listStyle:{
-    width:100,
-    padding:2,
+  bookInfo:{
+    marginLeft:20,
+    justifyContent:"space-around",
   },
   countContainer:{
     justifyContent:'center',
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
   },
   countText:{
     fontSize:16,
-  }
+  },
   
 })
 export default BookDetails;

@@ -55,9 +55,6 @@ export default function Books({ navigation }) {
           <View style={styles.bookInfo}>
             <Text style={styles.bookTitle}>{item.title}</Text>
             {renderAuthor(item)}
-            {/* <Text style={styles.author}>
-              Author:  {item.author_name}
-            </Text> */}
           </View>
         </View>
       </TouchableHighlight>
@@ -82,25 +79,22 @@ export default function Books({ navigation }) {
     </View> 
               :
     <SafeAreaView>
-      <View>
+       <View>
         <Toolbar />
       </View>
-        
     <View style={styles.countContainer}>
       <CheckoutCountContext.Consumer>
     {
         cbCount=>
-        <View>
           <Text style={styles.countText}>No. of checkedout Books:{cbCount.checkCount}</Text>
-        </View>
     }
     </CheckoutCountContext.Consumer>
-    </View>
-    <ScrollView style={{marginVertical:30}}>
+    </View> 
+     <ScrollView style={{marginVertical:30}}> 
       <View style={styles.container}>
       <Text>
         {allData && (
-          <FlatList 
+          <FlatList style={{marginVertical:30}}
             data={allData}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
@@ -108,7 +102,7 @@ export default function Books({ navigation }) {
         )}
       </Text>
     </View>
-    </ScrollView>
+     </ScrollView> 
     </SafeAreaView>
   );
 }
